@@ -1,0 +1,46 @@
+plugins {
+	id 'org.springframework.boot' version '2.3.3.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+	id 'java'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+	// https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk-core
+//compile group: 'com.amazonaws', name: 'aws-java-sdk-core', version: '1.11.942'
+	// https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk
+//compile group: 'com.amazonaws', name: 'aws-java-sdk', version: '1.11.942'
+	// https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk-cognitoidp
+//compile group: 'com.amazonaws', name: 'aws-java-sdk-cognitoidp', version: '1.11.942'
+compile 'com.auth0:jwks-rsa:0.4.0'
+compile 'com.auth0:java-jwt:3.3.0'
+compile("org.springframework.boot:spring-boot-devtools")
+compile('mysql:mysql-connector-java')
+// https://mvnrepository.com/artifact/javax.persistence/javax.persistence-api
+compile group: 'javax.persistence', name: 'javax.persistence-api', version: '2.2'
+compile("org.springframework.boot:spring-boot-starter-data-jpa")
+
+// https://mvnrepository.com/artifact/org.springframework.security/spring-security-config
+// https://mvnrepository.com/artifact/org.springframework.security/spring-security-config
+//compile group: 'org.springframework.security', name: 'spring-security-config', version: '5.4.2'
+// https://mvnrepository.com/artifact/org.springframework.security/spring-security-core
+//compile group: 'org.springframework.security', name: 'spring-security-core', version: '5.4.2'
+
+
+	
+}
+
+test {
+	useJUnitPlatform()
+}
