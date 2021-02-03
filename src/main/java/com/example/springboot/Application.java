@@ -2,11 +2,15 @@ package com.example.springboot;
 
 import java.util.Arrays;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
 @SpringBootApplication
+//@ComponentScan("com.example")
+//@EnableJpaRepositories
+@MapperScan(value="com.example.springboot.mapper")
 public class Application {
 
 	public static void main(String[] args) {
@@ -20,5 +24,5 @@ public class Application {
 			System.out.println(beanName);
 		}
 	}
-	
+
 }

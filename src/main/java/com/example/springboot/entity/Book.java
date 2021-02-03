@@ -1,5 +1,6 @@
-package com.example.springboot.controller;
+package com.example.springboot.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -8,11 +9,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity
-@Table(name = "book")
-public class Book {
-	@Id
-	 @GeneratedValue(strategy = GenerationType.AUTO)
+//@Entity
+//@Table(name = "book")
+public class Book implements Serializable {
+//	@Id
+//	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private String name;
 	private String publisher;
@@ -20,6 +21,24 @@ public class Book {
 	private String publish_year;
 	private Date created_datetime;
 	private Date updated_datetime;
+	private byte[] image;
+
+	public Book() {
+		super();
+	}
+
+	public Book(Long id, String name, String publisher, String price, String publish_year, Date created_datetime,
+			Date updated_datetime, byte[] image) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.publisher = publisher;
+		this.price = price;
+		this.publish_year = publish_year;
+		this.created_datetime = created_datetime;
+		this.updated_datetime = updated_datetime;
+		this.image = image;
+	}
 
 	public Long getId() {
 		return id;
@@ -75,6 +94,14 @@ public class Book {
 
 	public void setUpdated_datetime(Date updated_datetime) {
 		this.updated_datetime = updated_datetime;
+	}
+
+	public byte[] getImage() {
+		return image;
+	}
+
+	public void setImage(byte[] image) {
+		this.image = image;
 	}
 
 }

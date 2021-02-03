@@ -1,4 +1,4 @@
-package com.example.springboot;
+package com.example.springboot.interceptor;
 
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;

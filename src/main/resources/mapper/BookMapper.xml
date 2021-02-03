@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.springboot.mapper.BookMapper">
+	<!-- <resultMap id="BaseResultMap" type="com.example.springboot.mapper.BookMapper" 
+		> <id column="id" property="id" jdbcType="BIGINT" /> <id column="name" property="name" 
+		jdbcType="VARCHAR" /> </resultMap> -->
+
+
+	<select id="findAll"
+		resultType="com.example.springboot.entity.Book">
+		select * from book
+	</select>
+	<delete id="deleteById">
+		delete from book where id =#{id}
+	</delete>
+	<insert id="insertBook" useGeneratedKeys="true"
+		keyProperty="book.id" keyColumn="id">
+		insert into
+		book(name,publisher,price,publish_year,created_datetime,updated_datetime,image)
+		values(#{book.name},#{book.publisher},#{book.price},#{book.publish_year},CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,#{book.image})
+	</insert>
+</mapper>

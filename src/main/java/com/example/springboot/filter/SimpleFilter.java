@@ -1,4 +1,4 @@
-package com.example.springboot;
+package com.example.springboot.filter;
 import java.io.IOException;
 
 import javax.servlet.Filter;
@@ -10,15 +10,24 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.RSAKeyProvider;
+import com.example.springboot.AwsCognitoRSAKeyProvider;
 
 @Component
 public class SimpleFilter implements Filter {
+	@Value("${aws.cognito.region}")
+	private String awsCognitoRegion;
+	
+	@Value("${aws.user.pools.id}")
+	private String awsUserPoolsId;
+	
+	
    @Override
    public void destroy() {}
 
@@ -47,8 +56,8 @@ public class SimpleFilter implements Filter {
    public void init(FilterConfig filterconfig) throws ServletException {}
    
    public boolean verifyToken(String token) {
-		String aws_cognito_region = "us-east-2"; // Replace this with your aws cognito region
-		String aws_user_pools_id = "us-east-2_LAM7l2yjv"; // Replace this with your aws user pools id
+		String aws_cognito_region = awsCognitoRegion; // Replace this with your aws cognito region
+		String aws_user_pools_id = awsUserPoolsId; // Replace this with your aws user pools id
 		RSAKeyProvider keyProvider = new AwsCognitoRSAKeyProvider(aws_cognito_region, aws_user_pools_id);
 		Algorithm algorithm = Algorithm.RSA256(keyProvider);
 		JWTVerifier jwtVerifier = JWT.require(algorithm)
