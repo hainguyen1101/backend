@@ -38,7 +38,7 @@ public class SimpleFilter implements Filter {
       HttpServletResponse res = (HttpServletResponse) response;
       
       res.setHeader("Access-Control-Allow-Origin", "*");
-      res.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+      res.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE, PUT");
       res.setHeader("Access-Control-Max-Age", "3600");
       res.setHeader("Access-Control-Allow-Headers", "x-requested-with, authorization, Content-Type");
 

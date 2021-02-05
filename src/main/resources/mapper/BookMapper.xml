@@ -16,7 +16,35 @@
 	<insert id="insertBook" useGeneratedKeys="true"
 		keyProperty="book.id" keyColumn="id">
 		insert into
-		book(name,publisher,price,publish_year,created_datetime,updated_datetime,image)
+		book(name,publisher,price,publish_year,created_datetime,updated_datetime,image,imageName)
 		values(#{book.name},#{book.publisher},#{book.price},#{book.publish_year},CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,#{book.image})
 	</insert>
+
+	<update id="updateBook">
+		update book set name = #{book.name},publisher =
+		#{book.publisher},price =
+		#{book.price},publish_year =
+		#{book.publish_year}
+		,updated_datetime = CURRENT_TIMESTAMP
+		where id =
+		#{book.id}
+	</update>
+	<select id="searchBookByName"
+		resultType="com.example.springboot.entity.Book">
+		select * from book where name like CONCAT('%', #{name},
+		'%')
+	</select>
+	<select id="searchBookByPublisher"
+		resultType="com.example.springboot.entity.Book">
+		select * from book where publisher like CONCAT('%',
+		#{name}, '%')
+	</select>
+
+	<select id="searchBookByPrice"
+		resultType="com.example.springboot.entity.Book">
+		select * from book where price <![CDATA[>=]]>
+		#{from} and price <![CDATA[<=]]>
+		#{to}
+	</select>
+
 </mapper>
